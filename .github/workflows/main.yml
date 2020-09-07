@@ -35,3 +35,8 @@ jobs:
         run: yarn build
         env:
           CI: true
+
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
