@@ -1,5 +1,5 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -31,6 +31,7 @@
     "trailingComma": "es5"
   },
   "name": "use-last-fm",
+  "description": "Stream your currently playing song through last.fm as a react hook.",
   "author": "Alistair Smith <alistairsmith01@gmail.com>",
   "module": "dist/use-last-fm.esm.js",
   "repository": "git://github.com/webmail/use-last-fm.git",
