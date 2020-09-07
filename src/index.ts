@@ -4,6 +4,7 @@ export type TSong =
   | {
       name: string;
       artist: string;
+      art: string | 'n/a';
     }
   | 'connecting'
   | 'idle';
@@ -17,7 +18,8 @@ export type TSong =
 export const useLastFM = (
   username: string,
   token: string,
-  interval: number = 15 * 1000
+  interval: number = 15 * 1000,
+  imageSize: Image['size'] = 'extralarge'
 ) => {
   const [track, setTrack] = useState<TSong>('connecting');
 
@@ -34,9 +36,14 @@ export const useLastFM = (
         return 'idle';
       }
 
+      const image = lastSong.image.find(i => {
+        return i.size === imageSize;
+      });
+
       return {
         name: lastSong.name,
         artist: lastSong.artist['#text'],
+        art: image?.['#text'] ?? 'n/a',
       };
     };
 
@@ -95,7 +102,7 @@ export interface Album {
 }
 
 export interface Image {
-  size: string;
+  size: 'small' | 'medium' | 'large' | 'extralarge';
   '#text': string;
 }
 
