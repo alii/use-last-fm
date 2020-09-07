@@ -53,7 +53,7 @@ export const useLastFM = (
     const loop = setInterval(execute, interval);
 
     return () => clearInterval(loop);
-  }, [endpoint, interval]);
+  }, [endpoint, interval, imageSize]);
 
   return track;
 };
