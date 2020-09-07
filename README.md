@@ -1,5 +1,7 @@
 # use-last-fm
 
+![CI Status](https://github.com/webmail/use-last-fm/workflows/CI/badge.svg)
+
 Stream your currently playing song through last.fm as a react hook.
 
 ## Usage
