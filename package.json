@@ -33,6 +33,7 @@
   "name": "use-last-fm",
   "author": "Alistair Smith <alistairsmith01@gmail.com>",
   "module": "dist/use-last-fm.esm.js",
+  "repository": "git://github.com/webmail/use-last-fm.git",
   "devDependencies": {
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
