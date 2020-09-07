@@ -13,7 +13,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "lint": "tsdx lint",
+    "lint": "tsdx lint src",
     "prepare": "tsdx build"
   },
   "peerDependencies": {
@@ -31,7 +31,7 @@
     "trailingComma": "es5"
   },
   "name": "use-last-fm",
-  "author": "Alistair Smith",
+  "author": "Alistair Smith <alistairsmith01@gmail.com>",
   "module": "dist/use-last-fm.esm.js",
   "devDependencies": {
     "@types/react": "^16.9.49",
