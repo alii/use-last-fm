@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 
-export type TSong =
-  | {
-      name: string;
-      artist: string;
-      art: string | 'n/a';
-    }
-  | 'connecting'
-  | 'idle';
+export type TSongObject = {
+  name: string;
+  artist: string;
+  art: string | 'n/a';
+};
+
+export type TSong = TSongObject | 'connecting' | 'idle';
 
 /**
  * Use Last.fm
  * @param username The username of the last.fm user to track
  * @param token Your API token
  * @param interval Optional, this is the internal between each request
+ * @param imageSize The size of the image
  */
 export const useLastFM = (
   username: string,
