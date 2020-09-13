@@ -4,6 +4,11 @@
 
 Stream your currently playing song through last.fm as a react hook.
 
+## Installation
+
+- `npm i --save use-last-fm`
+- Alternatively using **yarn**: `yarn add use-last-fm`
+
 ## Usage
 
 ```tsx
