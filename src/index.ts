@@ -27,6 +27,10 @@ export const useLastFM = (
 
   useEffect(() => {
     const run = async (): Promise<TSong> => {
+      if (__DEV__) {
+        console.log('[LAST.FM] Fetching');
+      }
+
       const request = await fetch(endpoint);
       const body = (await request.json()) as Body;
 
@@ -49,7 +53,12 @@ export const useLastFM = (
 
     const execute = () => run().then(setTrack);
 
-    execute().then(() => console.log('[LAST.FM] Connected'));
+    if (__DEV__) {
+      execute().then(() => console.log('[LAST.FM] Connected'));
+    } else {
+      execute().then();
+    }
+
     const loop = setInterval(execute, interval);
 
     return () => clearInterval(loop);
