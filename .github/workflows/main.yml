@@ -40,6 +40,9 @@ jobs:
         env:
           CI: true
 
+      - name: Update Package Version
+        run: npm version patch
+
       - name: Publish to NPM
         run: npm publish
         env:
