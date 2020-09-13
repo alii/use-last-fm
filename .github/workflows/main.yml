@@ -41,7 +41,7 @@ jobs:
           CI: true
 
       - name: Update Package Version
-        run: npm version patch
+        run: npm --no-git-tag-version version patch
 
       - name: Publish to NPM
         run: npm publish
