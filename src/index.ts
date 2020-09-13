@@ -1,9 +1,22 @@
 import { useEffect, useState } from 'react';
 
 export type TSongObject = {
-  name: string;
-  artist: string;
-  art: string | 'n/a';
+  /**
+   * The name of the track
+   */
+  name: Track['name'];
+  /**
+   * The name of the artist
+   */
+  artist: TrackArtist['#text'];
+  /**
+   * The URL of the album art
+   */
+  art: TrackImage['#text'];
+  /**
+   * The album name
+   */
+  album: TrackAlbum['#text'];
 };
 
 /** The Song Type */
@@ -48,7 +61,8 @@ export const useLastFM = (
       return {
         name: lastSong.name,
         artist: lastSong.artist['#text'],
-        art: image?.['#text'] ?? 'n/a',
+        art: image?.['#text'] ?? lastSong.image[0]['#text'],
+        album: lastSong.album['#text'],
       };
     };
 

@@ -1,7 +1,7 @@
 {
   "name": "use-last-fm",
-  "description": "Stream your currently playing song through last.fm as a React hook.",
-  "version": "0.2.1",
+  "description": "Stream your current playing song from last.fm as a React hook.",
+  "version": "0.2.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
-    "husky": "^4.2.5",
+    "husky": "^4.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "tsdx": "^0.13.3",
