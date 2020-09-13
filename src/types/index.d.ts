@@ -1,1 +1,4 @@
-declare var __DEV__: boolean;
+/**
+ * TSDX Development mode
+ */
+declare const __DEV__: boolean;

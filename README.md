@@ -5,7 +5,8 @@
 Stream your currently playing song through last.fm as a React hook.
 
 # Features
-- 📦 **Tiny**: `use-last-fm` weighs in at just 611 bytes minified and gzipped.
+
+- 📦 **Tiny**: `use-last-fm` weighs in at **less than** 1000 minified and gzipped.
 - 🌳 **Universal**: we dist esm and cjs modules.
 - 👨‍💻 **Developer friendly**: Helpful development messages that are stripped away in production
 - ⌨️ **Strongly typed**: `use-last-fm` is written in TypeScript and encourages good practices this way
@@ -13,9 +14,11 @@ Stream your currently playing song through last.fm as a React hook.
 ## Installation
 
 ##### With NPM
+
 > `npm i --save use-last-fm`
 
 ##### Or, with yarn:
+
 > `yarn add use-last-fm`
 
 ## Usage
