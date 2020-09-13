@@ -12,7 +12,7 @@ export const useLastFM = (
   username: string,
   token: string,
   interval: number = 15 * 1000,
-  imageSize: TrackImage['size'] = 'extralarge'
+  imageSize: TrackImage['size'] = 'extralarge',
 ) => {
   const [track, setTrack] = useState<TSong>('connecting');
 
