@@ -25,6 +25,9 @@ jobs:
           restore-keys: |
             nodeModules-
 
+      - name: Update version in package.json
+        uses: maks-stupak/gh-action-bump-version@v7.1.5
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         env:
@@ -39,9 +42,6 @@ jobs:
         run: yarn build
         env:
           CI: true
-
-      - name: Update Package Version
-        run: npm --no-git-tag-version version patch
 
       - name: Publish to NPM
         run: npm publish
