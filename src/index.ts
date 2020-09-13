@@ -6,6 +6,7 @@ export type TSongObject = {
   art: string | 'n/a';
 };
 
+/** The Song Type */
 export type TSong = TSongObject | 'connecting' | 'idle';
 
 /**
@@ -19,7 +20,7 @@ export const useLastFM = (
   username: string,
   token: string,
   interval: number = 15 * 1000,
-  imageSize: Image['size'] = 'extralarge'
+  imageSize: TrackImage['size'] = 'extralarge'
 ) => {
   const [track, setTrack] = useState<TSong>('connecting');
 
@@ -32,7 +33,7 @@ export const useLastFM = (
       }
 
       const request = await fetch(endpoint);
-      const body = (await request.json()) as Body;
+      const body = (await request.json()) as LastFMResponseBody;
 
       const lastSong = body.recenttracks.track[0];
 
@@ -67,55 +68,137 @@ export const useLastFM = (
   return track;
 };
 
-export interface Body {
-  recenttracks: Recenttracks;
+interface LastFMResponseBody {
+  /**
+   * All tracks
+   */
+  recenttracks: RecentTracks;
 }
 
-export interface Recenttracks {
-  '@attr': Attr;
+export interface RecentTracks {
+  /**
+   * Attributes
+   */
+  '@attr': RecentTracksAttr;
+  /**
+   * Array of recently played tracks
+   */
   track: Track[];
 }
 
-export interface Attr {
+export interface RecentTracksAttr {
+  /**
+   * Pahe
+   */
   page: string;
+  /**
+   * Total tracks ever listened to
+   */
   total: string;
+  /**
+   * The username
+   */
   user: string;
+  /**
+   * How many songs are listed per page
+   */
   perPage: string;
+  /**
+   * Total amount of pages (total / perPage)
+   */
   totalPages: string;
 }
 
 export interface Track {
-  artist: Artist;
-  '@attr'?: Attr2;
+  /**
+   * The artist of the track
+   */
+  artist: TrackArtist;
+  /**
+   * Attributes
+   */
+  '@attr'?: TrackAttr;
+  /**
+   * MusicBrainz Identifier
+   */
   mbid: string;
-  album: Album;
+  /**
+   * The Album
+   */
+  album: TrackAlbum;
+  /**
+   * Unsure!
+   * @todo
+   */
   streamable: string;
+  /**
+   * URL Of the song
+   */
   url: string;
+  /**
+   * The name of the song
+   */
   name: string;
-  image: Image[];
-  date?: Date;
+  /**
+   * Array of images
+   */
+  image: TrackImage[];
+  /**
+   * The date the track was made
+   */
+  date?: TrackDate;
 }
 
-export interface Artist {
+export interface TrackArtist {
+  /**
+   * MusicBrainz Identifier
+   */
   mbid: string;
+  /**
+   * Name of the artist
+   */
   '#text': string;
 }
 
-export interface Attr2 {
+export interface TrackAttr {
+  /**
+   * If the track is currently playing
+   */
   nowplaying: string;
 }
 
-export interface Album {
+export interface TrackAlbum {
+  /**
+   * MusicBrainz identifier
+   */
   mbid: string;
+  /**
+   * Album name
+   */
   '#text': string;
 }
 
-export interface Image {
+export interface TrackImage {
+  /**
+   * Size of the image
+   */
   size: 'small' | 'medium' | 'large' | 'extralarge';
+  /**
+   * URL to the image
+   */
   '#text': string;
 }
 
-export interface Date {
+/**
+ * When the song was listened to
+ */
+export interface TrackDate {
+  /**
+   * Timestamp
+   */
   uts: string;
+  /**
+   * Human readable text
+   */
   '#text': string;
 }

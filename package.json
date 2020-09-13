@@ -1,7 +1,7 @@
 {
   "name": "use-last-fm",
   "description": "Stream your currently playing song through last.fm as a React hook.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
