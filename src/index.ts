@@ -46,11 +46,11 @@ export const useLastFM = (
     };
 
     const execute = () => run().then(setTrack);
-
+      
     if (__DEV__) {
       execute().then(() => console.log('[LAST.FM] Connected'));
     } else {
-      execute().then();
+      execute();
     }
 
     const loop = setInterval(execute, interval);
