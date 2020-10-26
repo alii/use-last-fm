@@ -22,7 +22,7 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=17"
   },
   "husky": {
     "hooks": {
@@ -36,14 +36,14 @@
     "trailingComma": "all"
   },
   "devDependencies": {
-    "@types/react": "^16.9.49",
+    "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "husky": "^4.3.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "tsdx": "^0.13.3",
-    "tslib": "^2.0.1",
-    "typescript": "^4.0.2"
+    "react-dom": "^17.0.1",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.3"
   },
   "keywords": [
     "react",

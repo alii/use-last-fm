@@ -11,7 +11,7 @@ export interface RecentTracks {
 
 export interface RecentTracksAttr {
   /**
-   * Pahe
+   * Page
    */
   page: string;
   /**
@@ -51,7 +51,6 @@ export interface Track {
   album: TrackAlbum;
   /**
    * Unsure!
-   * @todo
    */
   streamable: string;
   /**
@@ -126,7 +125,7 @@ export interface TrackDate {
   '#text': string;
 }
 
-export type TSongObject = {
+export type Song = {
   /**
    * The name of the track
    */
@@ -142,8 +141,22 @@ export type TSongObject = {
   /**
    * The album name
    */
+
   album: TrackAlbum['#text'];
 };
 
-/** The Song Type */
-export type TSong = TSongObject | 'connecting' | 'idle';
+export interface LastFMResponseBody {
+  /**
+   * All tracks
+   */
+  recenttracks: RecentTracks;
+}
+
+export type State =
+  | {
+  status: 'connecting' | 'idle';
+}
+  | {
+  status: 'playing';
+  song: Song;
+};
