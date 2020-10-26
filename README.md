@@ -26,16 +26,16 @@ Stream your currently playing song through last.fm as a React hook.
 ```tsx
 import { useLastFM } from 'use-last-fm';
 
-export const CurrentlyPlayingSong = () => {
-  const song = useLastFM('[add username here]', '[add api token here]');
+const CurrentlyPlaying = () => {
+  const lastFM = useLastFM('aabbccsmith', '[add api token here]');
 
-  if (song === 'connecting' || song === 'idle') {
+  if (lastFM.status !== 'playing') {
     return <p>Not listening to anything</p>;
   }
 
   return (
     <p>
-      Listening to {song.name} by {song.artist}
+      Listening to {lastFM.song.name} by {lastFM.song.artist}
     </p>
   );
 };

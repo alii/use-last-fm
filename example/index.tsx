@@ -4,20 +4,17 @@ import * as ReactDOM from 'react-dom';
 import { useLastFM } from '../.';
 
 const App = () => {
-                    const lastFM = useLastFM(
-                      'aabbccsmith',
-                      '[add api token here]',
-                    );
+  const lastFM = useLastFM('aabbccsmith', '[add api token here]');
 
-                    if (lastFM.status !== 'playing') {
-                      return <p>Not listening to anything</p>;
-                    }
+  if (lastFM.status !== 'playing') {
+    return <p>Not listening to anything</p>;
+  }
 
-                    return (
-                      <p>
-                        Listening to {lastFM.song.name} by {lastFM.song.artist}
-                      </p>
-                    );
-                  };
+  return (
+    <p>
+      Listening to {lastFM.song.name} by {lastFM.song.artist}
+    </p>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));
