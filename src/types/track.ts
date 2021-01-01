@@ -141,8 +141,11 @@ export type Song = {
   /**
    * The album name
    */
-
   album: TrackAlbum['#text'];
+  /**
+   * The URL of the track
+   */
+  url: Track['url'];
 };
 
 export interface LastFMResponseBody {
