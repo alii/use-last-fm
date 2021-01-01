@@ -1,6 +1,6 @@
 import { LastFMResponseBody, State, TrackImage } from './types';
 
-export async function fetchSongs(
+export async function fetchLastSong(
   url: string,
   imageSize: TrackImage['size'],
 ): Promise<State> {

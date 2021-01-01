@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TrackImage, State } from './types';
-import { fetchSongs } from './lib';
+import { fetchLastSong } from './lib';
 
 declare const __DEV__: boolean;
 
@@ -30,7 +30,7 @@ export const useLastFM = (
         console.log('[LAST.FM] Fetching');
       }
 
-      return fetchSongs(endpoint, imageSize);
+      return fetchLastSong(endpoint, imageSize);
     };
 
     const execute = () => run().then(setTrack);
