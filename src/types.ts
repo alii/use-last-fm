@@ -6,7 +6,7 @@ export interface RecentTracks {
   /**
    * Array of recently played tracks
    */
-  track: Track[];
+  track?: Types[];
 }
 
 export interface RecentTracksAttr {
@@ -32,7 +32,7 @@ export interface RecentTracksAttr {
   totalPages: string;
 }
 
-export interface Track {
+export interface Types {
   /**
    * The artist of the track
    */
@@ -129,7 +129,7 @@ export type Song = {
   /**
    * The name of the track
    */
-  name: Track['name'];
+  name: Types['name'];
   /**
    * The name of the artist
    */
@@ -145,7 +145,7 @@ export type Song = {
   /**
    * The URL of the track
    */
-  url: Track['url'];
+  url: Types['url'];
 };
 
 export interface LastFMResponseBody {
@@ -158,6 +158,7 @@ export interface LastFMResponseBody {
 export type State =
   | {
       status: 'connecting' | 'idle';
+      song: null;
     }
   | {
       status: 'playing';

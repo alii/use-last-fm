@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { TrackImage, LastFMResponseBody, State } from './types/track';
+import { TrackImage, State } from './types';
+import { fetchSongs } from './lib';
+
+declare const __DEV__: boolean;
 
 /**
  * Use Last.fm
@@ -14,41 +17,20 @@ export const useLastFM = (
   interval: number = 15 * 1000,
   imageSize: TrackImage['size'] = 'extralarge',
 ) => {
-  const [track, setTrack] = useState<State>({ status: 'connecting' });
+  const [track, setTrack] = useState<State>({
+    status: 'connecting',
+    song: null,
+  });
 
   const endpoint = `//ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${token}&format=json&limit=1`;
 
   useEffect(() => {
-    const run = async (): Promise<State> => {
+    const run = (): Promise<State> => {
       if (__DEV__) {
         console.log('[LAST.FM] Fetching');
       }
 
-      const request = await fetch(endpoint);
-      const body = (await request.json()) as LastFMResponseBody;
-
-      const lastSong = body.recenttracks.track[0];
-
-      if (!lastSong['@attr']?.nowplaying) {
-        return {
-          status: 'idle',
-        };
-      }
-
-      const image = lastSong.image.find(i => {
-        return i.size === imageSize;
-      });
-
-      return {
-        status: 'playing',
-        song: {
-          name: lastSong.name,
-          artist: lastSong.artist['#text'],
-          art: image?.['#text'] ?? lastSong.image[0]['#text'],
-          url: lastSong.url,
-          album: lastSong.album['#text'],
-        },
-      };
+      return fetchSongs(endpoint, imageSize);
     };
 
     const execute = () => run().then(setTrack);
@@ -67,4 +49,4 @@ export const useLastFM = (
   return track;
 };
 
-export * from './types/track';
+export * from './types';
