@@ -35,7 +35,7 @@ export const useLastFM = (
         };
       }
 
-      const image = lastSong.image.find(i => {
+      const image = lastSong.image.find((i) => {
         return i.size === imageSize;
       });
 
@@ -45,6 +45,7 @@ export const useLastFM = (
           name: lastSong.name,
           artist: lastSong.artist['#text'],
           art: image?.['#text'] ?? lastSong.image[0]['#text'],
+          url: lastSong.url,
           album: lastSong.album['#text'],
         },
       };
