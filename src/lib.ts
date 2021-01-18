@@ -1,12 +1,15 @@
 import { LastFMResponseBody, State, TrackImage } from './types';
 
-export async function fetchLastSong(
-  url: string,
+export function parseSong(
+  body: LastFMResponseBody | null,
   imageSize: TrackImage['size'],
-): Promise<State> {
-  const body: LastFMResponseBody = await fetch(url).then(res => {
-    return res.json();
-  });
+): State {
+  if (!body) {
+    return {
+      status: 'connecting',
+      song: null,
+    };
+  }
 
   const lastSong = body.recenttracks.track?.[0];
 

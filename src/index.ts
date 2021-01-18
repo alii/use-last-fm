@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
-import { TrackImage, State } from './types';
-import { fetchLastSong } from './lib';
-
-declare const __DEV__: boolean;
+import { TrackImage, State, LastFMResponseBody } from './types';
+import { parseSong } from './lib';
+import useSWR from 'swr';
 
 /**
  * Use Last.fm
@@ -11,42 +9,34 @@ declare const __DEV__: boolean;
  * @param interval Optional, this is the internal between each request
  * @param imageSize The size of the image
  */
-export const useLastFM = (
+export function useLastFM(
   username: string,
   token: string,
   interval: number = 15 * 1000,
   imageSize: TrackImage['size'] = 'extralarge',
-) => {
-  const [track, setTrack] = useState<State>({
-    status: 'connecting',
-    song: null,
-  });
-
+): State {
   const endpoint = `//ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${token}&format=json&limit=1`;
 
-  useEffect(() => {
-    const run = (): Promise<State> => {
-      if (__DEV__) {
-        console.log('[LAST.FM] Fetching');
-      }
+  const { data: track = null, error } = useSWR<LastFMResponseBody, Error>(
+    endpoint,
+    { refreshInterval: interval },
+  );
 
-      return fetchLastSong(endpoint, imageSize);
+  if (error) {
+    return {
+      status: 'error',
+      song: null,
     };
+  }
 
-    const execute = () => run().then(setTrack);
-
-    if (__DEV__) {
-      execute().then(() => console.log('[LAST.FM] Connected'));
-    } else {
-      execute();
-    }
-
-    const loop = setInterval(execute, interval);
-
-    return () => clearInterval(loop);
-  }, [endpoint, interval, imageSize]);
-
-  return track;
-};
+  try {
+    return parseSong(track, imageSize);
+  } catch (e) {
+    return {
+      status: 'error',
+      song: null,
+    };
+  }
+}
 
 export * from './types';

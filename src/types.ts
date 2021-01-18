@@ -157,7 +157,7 @@ export interface LastFMResponseBody {
 
 export type State =
   | {
-      status: 'connecting' | 'idle';
+      status: 'connecting' | 'idle' | 'error';
       song: null;
     }
   | {

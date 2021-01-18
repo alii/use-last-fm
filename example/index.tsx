@@ -6,6 +6,10 @@ import { useLastFM } from '../.';
 const App = () => {
   const lastFM = useLastFM('aabbccsmith', '[add api token here]');
 
+  if (lastFM.status === 'error') {
+    return <p>Could not connect to Last.fm</p>;
+  }
+
   if (lastFM.status !== 'playing') {
     return <p>Not listening to anything</p>;
   }
