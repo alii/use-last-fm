@@ -6,7 +6,7 @@ import useSWR from 'swr';
  * Use Last.fm
  * @param username The username of the last.fm user to track
  * @param token Your API token
- * @param interval Optional, this is the internal between each request
+ * @param interval Optional, this is the interval between each request
  * @param imageSize The size of the image
  */
 export function useLastFM(
