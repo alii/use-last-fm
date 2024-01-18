@@ -32,6 +32,8 @@ export function parseSong(
       art: image?.['#text'] ?? lastSong.image[0]['#text'],
       url: lastSong.url,
       album: lastSong.album['#text'],
+      albumMbid: lastSong.album.mbid === '' ? null : lastSong.album.mbid,
+      trackMbid: lastSong.mbid === '' ? null : lastSong.mbid,
     },
   };
 }
