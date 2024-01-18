@@ -146,6 +146,14 @@ export type Song = {
    * The URL of the track
    */
   url: Track['url'];
+  /**
+   * MusicBrainz Identifier for the given track
+   */
+  trackMbid: Track['mbid'] | null;
+  /**
+   * MusicBrainz Identifier for the given album
+   */
+  albumMbid: TrackAlbum['mbid'] | null;
 };
 
 export interface LastFMResponseBody {
